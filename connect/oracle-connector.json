@@ -1,0 +1,31 @@
+{
+  "name": "oracle-retail-orders",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+    "topic.prefix": "oracle",
+    "database.hostname": "oracle",
+    "database.port": "1521",
+    "database.user": "C##DBZ",
+    "database.password": "DbzPwd123",
+    "database.dbname": "FREE",
+    "database.pdb.name": "FREEPDB1",
+    "database.connection.adapter": "logminer",
+    "log.mining.strategy": "online_catalog",
+    "table.include.list": "RETAIL.ORDERS",
+    "snapshot.mode": "initial",
+    "snapshot.locking.mode": "none",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
+    "schema.history.internal.kafka.topic": "schema-history.oracle-retail",
+    "schema.history.internal.store.only.captured.tables.ddl": "true",
+    "include.schema.changes": "true",
+    "decimal.handling.mode": "string",
+    "time.precision.mode": "connect",
+    "tombstones.on.delete": "true",
+    "heartbeat.interval.ms": "5000",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false"
+  }
+}

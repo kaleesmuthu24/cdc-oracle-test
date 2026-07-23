@@ -1,0 +1,8 @@
+results/*.csv
+results/*.json
+results/*.log
+!results/README.md
+.idea/
+.vscode/
+target/
+.DS_Store

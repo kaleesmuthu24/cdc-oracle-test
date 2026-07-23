@@ -1,0 +1,32 @@
+{
+  "name": "CDC Rebuild-First Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "forwardPorts": [8083, 18080, 1521, 5432, 10800],
+  "portsAttributes": {
+    "8083": {"label": "Kafka Connect", "onAutoForward": "silent"},
+    "18080": {"label": "Projection Sink Metrics", "onAutoForward": "openBrowser"},
+    "1521": {"label": "Oracle Database", "onAutoForward": "silent"},
+    "5432": {"label": "PostgreSQL", "onAutoForward": "silent"},
+    "10800": {"label": "Apache Ignite Thin Client", "onAutoForward": "silent"}
+  },
+  "postCreateCommand": "python -m pip install --upgrade pip && pip install -r tools/requirements.txt && chmod +x scripts/*.sh",
+  "remoteUser": "vscode"
+}
