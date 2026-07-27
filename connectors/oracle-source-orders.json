@@ -1,0 +1,36 @@
+{
+  "name": "oracle-source-orders",
+  "config": {
+    "connector.class": "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max": "1",
+
+    "database.hostname": "oracle",
+    "database.port": "1521",
+    "database.user": "c##dbzuser",
+    "database.password": "dbz",
+
+    "database.dbname": "FREE",
+    "database.pdb.name": "FREEPDB1",
+
+    "topic.prefix": "oracle-orders",
+
+    "table.include.list": "RETAIL[.]ORDERS",
+
+    "snapshot.mode": "initial",
+    "database.connection.adapter": "logminer",
+    "decimal.handling.mode": "string",
+
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
+    "schema.history.internal.kafka.topic": "schema-changes.oracle-orders",
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "false",
+
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "true",
+    "transforms.unwrap.delete.handling.mode": "rewrite"
+  }
+}
